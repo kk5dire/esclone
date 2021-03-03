@@ -1,0 +1,62 @@
+{
+  "name": "esmbot",
+  "version": "1.4.3",
+  "description": "A Discord bot with miscellaneous features",
+  "main": "app.js",
+  "engines": {
+    "node": ">=15"
+  },
+  "scripts": {
+    "build": "node-gyp configure build -j max",
+    "docker:build-api": "docker build -t esmbot-api -f Dockerfile.api .",
+    "docker:build-ss": "docker build -t headless-chrome-alpine --no-cache ./utils/screenshot",
+    "docker:run-api": "docker run --rm --network=host esmbot-api",
+    "docker:run-ss": "docker run --rm --network=host --shm-size=128m headless-chrome-alpine",
+    "docker:run-lava": "docker run --rm --network host -v \"$(pwd)\"/application.yml:/opt/Lavalink/application.yml -v \"$(pwd)\"/assets:/opt/Lavalink/assets fredboat/lavalink:dev",
+    "start": "node app.js"
+  },
+  "author": "Essem <essem@essem.space>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esmBot/esmBot.git"
+  },
+  "dependencies": {
+    "@lavacord/eris": "0.0.3",
+    "abort-controller": "^3.0.0",
+    "cowsay": "^1.4.0",
+    "dblapi.js": "^2.4.1",
+    "dotenv": "^8.2.0",
+    "duckduckgo-images-api": "github:benpbolton/duckduckgo-images-api",
+    "emoji-regex": "^8.0.0",
+    "eris": "^0.14.0",
+    "file-type": "^16.1.0",
+    "jsqr": "^1.3.1",
+    "lavacord": "^1.1.9",
+    "moment": "^2.29.1",
+    "moment-duration-format": "^2.3.2",
+    "node-addon-api": "^3.1.0",
+    "node-emoji": "^1.10.0",
+    "node-fetch": "^2.6.1",
+    "node-tweet": "^0.1.4",
+    "puppeteer": "^5.5.0",
+    "puppeteer-extra": "^3.1.15",
+    "puppeteer-extra-plugin-stealth": "^2.6.5",
+    "qrcode": "^1.4.4",
+    "retrotext": "github:TheEssem/retrotext",
+    "sharp": "^0.26.3",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.2",
+    "eslint-plugin-promise": "^4.2.1"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.1",
+    "erlpack": "github:abalabahaha/erlpack",
+    "mongoose": "^5.11.8",
+    "pg": "^8.5.1",
+    "uuid": "^8.3.1",
+    "zlib-sync": "^0.1.6"
+  }
+}
